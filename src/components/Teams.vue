@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- // check -->
-    <div class="teams-container" v-if="(isAdmin || isTeamLead || isUser) && !noProjectsModal">
-      <div v-for="(team, teamIndex) in teamsArr" :key="teamIndex">
+    <div v-if="(isAdmin || isTeamLead || isUser) && !noProjectsModal">
+      <div class="teams-container" v-for="(team, teamIndex) in teamsArr" :key="teamIndex">
         <div class="team" v-if="teamLeadCanSee(team) || userCanSee(team)">
           <h3 v-if="isAdmin || isTeamLead">
             {{ team.teamName }} - Budget is {{ team.teamBudget }} €
