@@ -1,4 +1,4 @@
-# vvgram
+# Projects budget tracking app
 
 ## Project setup
 ```
