@@ -31,7 +31,7 @@
           </div>
           <div
             class="expand"
-            v-if="project.people.length && !isUser"
+            v-if="project.people.length"
             @click="isClicked2 = !isClicked2"
           >
             Project members
@@ -106,7 +106,6 @@ export default {
           return true;
         }
       }
-      this.showNoProjectsWindow();
       return false;
     },
     deleteProject(teamIndex, projectIndex, project) {

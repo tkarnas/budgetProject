@@ -101,14 +101,61 @@ export default {
                     projects: projects,
                   })
                   .then(() => {
+                    if (this.team && this.team.teamlead)
+                    {
+                      
+                    db.collection("teams")
+                  .get()
+                  .then((snapshot) => {
+                    if (snapshot.empty) {
+                      console.warn("error");
+                      return;
+                    }
+                    snapshot.forEach((doc) => {
+                      const team = doc.data();
+                      const teamId = doc.id;
+                      for (const project of team.projects) {
+                        if (
+                          project.projectName ===
+                            this.projectName &&
+                          project.projectBudget ===
+                            this.projectBudget
+                        ) {
+                          const projectIndex = team.projects.indexOf(project);
+
+                          db.collection("teams")
+                            .doc(teamId)
+                            .get()
+                            .then((doc) => {
+                              const updatedTeam = doc.data();
+                              updatedTeam.projects[projectIndex].people.push(
+                                this.team.teamlead
+                              );
+
+                              db.collection("teams")
+                                .doc(teamId)
+                                .set(updatedTeam);
+                                // this.$alert("Added", "Success", "success");
+                                this.getTeams()
+                            });
+                        }
+                      }
+                    });
+                  });
+                    }
+                  })
+                  .then(() => {
                     this.getTeams();
                     this.$alert(
                       `New project ${this.projectName} added`,
                       "Success",
                       "success"
                     );
-                    this.projectName = "";
-                    this.projectBudget = "";
+                    setTimeout(() => {
+                      this.projectName = "";
+                      this.projectBudget = "";
+                      
+                    }, 500);
                   })
                   .catch((error) => {
                     console.error("Error adding project:", error);

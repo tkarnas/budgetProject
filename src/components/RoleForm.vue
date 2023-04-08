@@ -315,7 +315,9 @@ export default {
           query.forEach((doc) => {
             const data = doc.data();
             const user = data.user;
-            this.allUsersArr.push(user);
+            if (!data.isAdmin && !data.isTeamLead) {
+              this.allUsersArr.push(user);
+            }
           });
         });
     },
