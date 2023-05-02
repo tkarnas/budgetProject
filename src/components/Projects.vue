@@ -172,7 +172,7 @@ export default {
 .button {
   display: block;
   padding-left: 15px;
-  width: 30%;
+  width: 50%;
   background-color: rgba(136, 238, 69, 0.288);
   border-radius: 4px;
   cursor: pointer;
