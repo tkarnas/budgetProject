@@ -183,7 +183,7 @@ export default {
 .expand {
   display: block;
   padding-left: 15px;
-  width: 30%;
+  width: 50%;
   background-color: rgba(43, 146, 172, 0.438);
   border-radius: 4px;
   cursor: pointer;
